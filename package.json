@@ -1,0 +1,62 @@
+{
+  "name": "namehere",
+  "version": "1.0.0",
+  "description": "descriptionHere",
+  "author": "authorHere",
+  "engines": {
+    "node": ">=12.13.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "node bin/www/server.js",
+    "debug": "nodemon --inspect bin/www/server.js",
+    "debug-initbreak": "nodemon --inspect-brk bin/www/server.js",
+    "test": "npm run lint && mocha --bail --exit ./components/**/*Test.js",
+    "lint": "eslint ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
+  },
+  "dependencies": {
+    "aws-sdk": "2.563.0",
+    "body-parser": "1.18.3",
+    "cors": "2.8.5",
+    "dotenv": "6.2.0",
+    "es6-promisify": "6.0.1",
+    "express": "4.16.2",
+    "helmet": "3.22.0",
+    "joi": "14.3.1",
+    "jsonwebtoken": "8.5.0",
+    "socket.io": "2.3.0",
+    "ssh2": "0.8.9",
+    "swagger-jsdoc": "3.5.0",
+    "swagger-ui-express": "4.1.2",
+    "winston": "3.2.1"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "chai-http": "4.2.1",
+    "eslint": "5.15.3",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-mocha": "5.3.0",
+    "eslint-plugin-node": "8.0.1",
+    "eslint-plugin-security": "1.4.0",
+    "eslint-plugin-you-dont-need-lodash-underscore": "6.8.0",
+    "husky": "2.3.0",
+    "mocha": "6.1.4",
+    "nodemon": "1.19.1",
+    "proxyquire": "2.1.3",
+    "sinon": "7.5.0"
+  },
+  "keywords": [
+    "Express",
+    "Aws",
+    "Eslint",
+    "Mocha",
+    "Proxyquire",
+    "jwt"
+  ]
+}

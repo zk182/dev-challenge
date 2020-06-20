@@ -1,0 +1,223 @@
+
+paths:
+  /admin-backend/sample:       # path to your endpoint
+    get:
+      tags:              # Tag property
+        - Sample            # Value of the tag
+      summary: Gets every Sample
+      produces:
+        - application/json
+      parameters:
+      - in: header          # request header
+        name: authorization     # name of request, can be any name
+        description:
+        required: true   # can also be true depending on user preference
+      responses:         # server responses
+        200:
+          description: Ok
+          content:
+            application/json
+        500:
+          description: Error
+  /admin-backend/sample/{Id}/dimensions:
+    get:
+      tags:              # Tag property
+        - Sample            # Value of the tag
+      summary: Gets group of Sample items
+      produces:
+        - application/json
+      parameters:
+      - in: header          # request header
+        name: authorization     # name of request, can be any name
+        description:
+        required: true   # can also be true depending on user preference
+      - in: path
+        name: Id   # Note the name is the same as in the path
+        type: string
+        required: true
+      responses:         # server responses
+        200:
+          description: Ok
+          content:
+            application/json
+        404:
+          description: Item not found
+        500:
+          description: Error
+  /admin-backend/sample/{Id}:
+    patch:
+      tags:              # Tag property
+        - Sample            # Value of the tag
+      summary: Updates single Sample
+      produces:
+        - application/json
+      parameters:
+      - in: header          # request header
+        name: authorization     # name of request, can be any name
+        description:
+        required: true   # can also be true depending on user preference
+      - in: path
+        name: Id   # Note the name is the same as in the path
+        type: string
+        required: true
+      - in: body
+        name: model
+        description: the Sample model
+        required: true   # can also be true depending on user preference
+        schema:
+              properties:
+                metadataId:
+                  type: string
+                  example: "123456"
+                Id:
+                  type: string
+                  example: "123456"
+                Data:
+                  type: object
+                  properties:
+                    sectionIdentifier:
+                      type: string
+                      example: "Your sectionIdentifier here"
+                    identifier:
+                      type: string
+                      example: "Your Identifier here"
+                    order:
+                      type: number
+                      example: 1
+                    label:
+                      type: string
+                      example: "Your label here"
+                    text:
+                      type: string
+                      example: "Your text here"
+                    valueType:
+                      type: string
+                      enum: ['SINGLE', 'MULTIPLE', 'GRID', 'GRID_MULTIPLE', 'RANK_ORDER', 'OPEN_TEXT', 'OPEN_NUMERIC', 'OTHER', 'UNKNOWN']
+                      example: "SINGLE"
+                    numericIdentifier:
+                      type: number
+                      example: 1
+                    sectionNumericIdentifier:
+                      type: number
+                      example: 1
+                    filter:
+                      type: boolean
+                      example: false
+                    variable:
+                      type: boolean
+                      example: false
+                    filterType:
+                      type: string
+                      enum: ['ATTRIBUTE', 'QUESTION', 'LOCATION', 'NONE']
+                      example: 'ATTRIBUTE'
+      responses:         # server responses
+        200:
+          description: Ok
+          content:
+            application/json
+        500:
+          description: Error
+    get:
+      tags:              # Tag property
+        - Sample            # Value of the tag
+      summary: Gets single Sample
+      produces:
+        - application/json
+      parameters:
+      - in: header          # request header
+        name: authorization     # name of request, can be any name
+        description:
+        required: true   # can also be true depending on user preference
+      - in: path
+        name: Id   # Note the name is the same as in the path
+        type: string
+        required: true
+      responses:         # server responses
+        200:
+          description: Ok
+          content:
+            application/json
+        404:
+          description: Item not found
+        500:
+          description: Error
+  /admin-backend/:metadataId/samples/:Id:
+    post:                # endpoint request type (post request)
+      tags:              # Tag property
+        - Sample            # Value of the tag
+      summary: Posts a Sample
+      consumes:
+        - application/json
+      produces:
+        - string
+      parameters:         # request parameters
+      - in: header          # request header
+        name: authorization     # name of request, can be any name
+        description:
+        required: true   # can also be true depending on user preference
+      - in: path
+        name: metadataId   # Note the name is the same as in the path
+        type: string
+        required: true
+      - in: path
+        name: Id   # Note the name is the same as in the path
+        type: string
+        required: true
+      - in: body
+        name: model
+        description: the Sample model
+        required: true   # can also be true depending on user preference
+        schema:
+              properties:
+                metadataId:
+                  type: string
+                  example: "123456"
+                Id:
+                  type: string
+                  example: "123456"
+                Data:
+                  type: object
+                  properties:
+                    sectionIdentifier:
+                      type: string
+                      example: "Your sectionIdentifier here"
+                    identifier:
+                      type: string
+                      example: "Your Identifier here"
+                    order:
+                      type: number
+                      example: 1
+                    label:
+                      type: string
+                      example: "Your label here"
+                    text:
+                      type: string
+                      example: "Your text here"
+                    valueType:
+                      type: string
+                      enum: ['SINGLE', 'MULTIPLE', 'GRID', 'RANK_ORDER', 'OPEN_TEXT', 'OPEN_NUMERIC', 'OTHER', 'UNKNOWN']
+                      example: "SINGLE"
+                    numericIdentifier:
+                      type: number
+                      example: 1
+                    sectionNumericIdentifier:
+                      type: number
+                      example: 1
+                    filter:
+                      type: boolean
+                      example: false
+                    variable:
+                      type: boolean
+                      example: false
+                    type:
+                      type: string
+                      example: 'C'
+                    filterType:
+                      type: string
+                      enum: ['ATTRIBUTE', 'QUESTION', 'LOCATION', 'NONE']
+                      example: 'ATTRIBUTE'
+      responses:         # server responses
+        201:
+          description: Created
+        500:
+          description: Error

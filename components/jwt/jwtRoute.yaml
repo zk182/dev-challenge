@@ -1,0 +1,20 @@
+paths:
+  /admin-backend/authorization:       # path to your endpoint
+    get:                 # endpoint request type (post request)
+      tags:              # Tag property
+        - Authorization            # Value of the tag
+      summary: Validates a jwt
+      produces:
+      - application/json
+      parameters:         # request parameters
+      - in: header          # request header
+        name: authorization     # name of request, can be any name
+        description:
+        required: true   # can also be true depending on user preference
+      responses:         # server responses
+        200:
+          description: Ok
+        403:
+          description: Forbidden request
+        500:
+          description: Jwt malformed
