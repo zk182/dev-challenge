@@ -39,7 +39,6 @@ const remove = (id) => {
 
 module.exports = {
 	getAll,
-	get,
 	post,
 	remove,
 };
