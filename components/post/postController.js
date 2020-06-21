@@ -19,7 +19,7 @@ module.exports = {
 		}
 	},
 	/**
-	* description : Post
+	* description : Post a post
 	* @since 1.0.0
 	* @status Stable
 	*
@@ -37,7 +37,7 @@ module.exports = {
 		}
 	},
 	/**
-	* description : Delete
+	* description : Delete a post
 	* @since 1.0.0
 	* @status Stable
 	*
