@@ -5,11 +5,11 @@ const { jwtHelper } = require('../../middlewares');
 // Authorization
 
 exampleRouter.route('/')
-	.get(service.getAll);
+	.get(jwtHelper.verifyJwt, service.getAll);
 
 exampleRouter.route('/:Id')
 	.post(jwtHelper.verifyJwt, service.post)
 	.delete(jwtHelper.verifyJwt, service.remove)
-	.get(service.get);
+	.get(jwtHelper.verifyJwt, service.get);
 
 module.exports = exampleRouter;

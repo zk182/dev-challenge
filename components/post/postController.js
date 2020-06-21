@@ -11,23 +11,9 @@ module.exports = {
 	*/
 	getAll: async (req, res, next) => {
 		try {
-			const items = await Post.getAll();
+			const { user } = req;
+			const items = await Post.getAll(user);
 			return res.json(items);
-		} catch (err) {
-			return next(new ErrorHelper(err.message, err.statusCode));
-		}
-	},
-	/**
-	* description : Get
-	* @since 1.0.0
-	* @status Stable
-	*
-	* @return {null}
-	*/
-	get: async (req, res, next) => {
-		try {
-			const item = await Post.get();
-			return res.json(item);
 		} catch (err) {
 			return next(new ErrorHelper(err.message, err.statusCode));
 		}
@@ -42,8 +28,9 @@ module.exports = {
 	post: async (req, res, next) => {
 		try {
 			const Data = req.body;
+			const { user } = req;
 			const { Id } = req.params;
-			await Post.post(Data, Number(Id));
+			await Post.post(Data, Number(Id), user);
 			return res.sendStatus(200);
 		} catch (err) {
 			return next(new ErrorHelper(err.message, err.statusCode));
@@ -59,7 +46,8 @@ module.exports = {
 	remove: async (req, res, next) => {
 		try {
 			const { Id } = req.params;
-			await Post.remove(Number(Id));
+			const { user } = req;
+			await Post.remove(Number(Id), user);
 			return res.sendStatus(200);
 		} catch (err) {
 			return next(new ErrorHelper(err.message, err.statusCode));

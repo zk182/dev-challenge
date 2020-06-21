@@ -6,7 +6,7 @@ const { createValidator } = validationHelpers;
 
 const postSchema = Joi.object().keys({
 	Id: Joi.number().strict().required(),
-	text: Joi.string(),
+	text: Joi.string().required(),
 	author: Joi.string().required(),
 	state: Joi.string().required().valid(['Draft', 'Private', 'Public']),
 });
