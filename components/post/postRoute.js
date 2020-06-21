@@ -9,7 +9,6 @@ exampleRouter.route('/')
 
 exampleRouter.route('/:Id')
 	.post(jwtHelper.verifyJwt, service.post)
-	.delete(jwtHelper.verifyJwt, service.remove)
-	.get(jwtHelper.verifyJwt, service.get);
+	.delete(jwtHelper.verifyJwt, service.remove);
 
 module.exports = exampleRouter;

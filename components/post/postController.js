@@ -30,8 +30,8 @@ module.exports = {
 			const Data = req.body;
 			const { user } = req;
 			const { Id } = req.params;
-			await Post.post(Data, Number(Id), user);
-			return res.sendStatus(200);
+			const newValue = await Post.post(Data, Number(Id), user);
+			return res.send(newValue);
 		} catch (err) {
 			return next(new ErrorHelper(err.message, err.statusCode));
 		}
@@ -47,8 +47,8 @@ module.exports = {
 		try {
 			const { Id } = req.params;
 			const { user } = req;
-			await Post.remove(Number(Id), user);
-			return res.sendStatus(200);
+			const result = await Post.remove(Number(Id), user);
+			return res.send(result);
 		} catch (err) {
 			return next(new ErrorHelper(err.message, err.statusCode));
 		}

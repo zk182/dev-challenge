@@ -22,16 +22,18 @@ const post = async (postarg, id, user) => {
 		const validation = await validPost(Post);
 		if (validation.error) throw new Error(validation.message);
 		posts.push(Post);
+		return Post;
 	} catch (err) {
 		throw new ErrorHelper(err.message, err.statusCode, err.isOperational);
 	}
 };
 
-const remove = (id) => {
+const remove = (id, user) => {
 	try {
-		const index = posts.findIndex(element => element.Id === id);
+		const index = posts.findIndex(element => element.Id === id && (element.state === 'Public' || element.author === user));
 		if (index > -1) delete posts[index];
-		return;
+		else return 'item not found';
+		return 'element deleted';
 	} catch (err) {
 		throw new ErrorHelper(err.message, err.statusCode, err.isOperational);
 	}
